@@ -1,0 +1,113 @@
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #F8F5F2;
+    color: #2E2E2E;
+}
+
+
+/* Cabeçalho */
+#cabecalhoInicial {
+    background-color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.opcoesIniciais {
+    max-width: 1000px;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.opcoesIniciais img {
+    width: 60px;
+}
+
+.menu-pc ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-pc a {
+    text-decoration: none;
+    color: #2E2E2E;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.menu-pc a:hover {
+    color: #D97B66;
+}
+
+
+
+.hero {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.hero h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #777;
+}
+
+
+
+
+.opcoes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 60px;
+}
+
+.opcoes button {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.agendamento {
+    background-color: #D97B66;
+    color: white;
+}
+
+.agendamento:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 12px rgba(217, 123, 102, 0.5);
+}
+
+.agenda {
+    background-color: #E8CFCF;
+    color: #2E2E2E;
+}
+
+.agenda:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(232, 207, 207, 0.6);
+}
+
+
+/* Rodapé */
+footer {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    padding-bottom: 20px;
+}

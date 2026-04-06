@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- MINHAS FONTES PARA TEXTOS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Para rodar no FLASK sem dar erro -->
+        <title>Kurly Studio</title>
+    </head>
+    
+    <body>
+        <header id="cabecalhoInicial">
+            <div class="opcoesIniciais">
+                <a href="/">
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Kurly"> <!-- Para rodar no FLASK sem dar erro-->
+                </a>
+
+                <nav class="menu-pc">
+                    <ul>
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/formulario">Realizar&nbsp;&nbsp;Agendamento</a></li>
+                        <li><a href="/agenda">Ver agenda</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="hero">
+            <h1>Bem-vindo ao Kurly Studio ✂️</h1>
+            <p>Agende seu horário com facilidade e cuide da sua beleza sem complicação.</p>
+        </div>
+
+        <div class="opcoes">
+
+            <a href="/formulario">
+                <button class="agendamento">Novo Agendamento</button>
+            </a>
+
+            <a href="/agenda">
+                <button class="agenda">Ver Agenda</button>
+            </a>
+
+        </div>
+        
+        <footer>
+            <p class="copyright">
+                Este projeto foi desenvolvido para a Avaliação Técnica DSIN Tecnologia da Informação.
+                Todos os direitos reservados &copy; 2026 Breno Redusino
+            </p>
+        </footer>
+
+    </body>
+</html>
