@@ -45,25 +45,25 @@ def criar_tabelas():
 
 
 def verificacao(inicio, fim):
-    inicio_novo = datetime.strptime(inicio, "%Y-%m-%d %H:%M")
-    fim_novo = datetime.strptime(fim, "%Y-%m-%d %H:%M")
-    
-    cursor.execute("SELECT data_hora_inicio, data_hora_fim FROM agendamentos")
-    agendamentos = cursor.fetchall()
+    cursor.execute("""
+        SELECT 1 FROM agendamentos
+        WHERE NOT (
+            data_hora_fim <= ? OR
+            data_hora_inicio >= ?
+        )
+    """, (inicio, fim))
 
-    for i in agendamentos:
-        inicio_existente = datetime.strptime(i[0], "%Y-%m-%d %H:%M")
-        fim_existente = datetime.strptime(i[1], "%Y-%m-%d %H:%M")
-
-        if inicio_novo < fim_existente and fim_novo > inicio_existente:
-            return False
-
-    return True
+    return cursor.fetchone() is None
 
 
 def criar_agendamento(cliente_nome, telefone, servico_id, inicio):
     
     inicio_dt = datetime.strptime(inicio, "%Y-%m-%dT%H:%M")
+
+
+    if inicio_dt.year < 2024 or inicio_dt.year > 2100:
+        return "Data inválida!"
+    
 
     cursor.execute("INSERT INTO clientes (nome, telefone) VALUES (?, ?)", (cliente_nome, telefone))
     cliente_id = cursor.lastrowid
@@ -98,12 +98,18 @@ def criar_agendamento(cliente_nome, telefone, servico_id, inicio):
     return "Agendamento criado com sucesso!"
 
 
-
-
+#Rota principal, tela de index
 @app.route('/')
 def index():
     return render_template("index.html")
 
+
+#Rota de agendamento
+@app.route('/formulario')
+def formulario():
+    return render_template("agendar.html")
+
+#Apos o agendamento na rota formulario, vem para ca
 @app.route('/agendar', methods=['POST'])
 def agendar():
     nome = request.form['nome']
@@ -115,7 +121,23 @@ def agendar():
 
     return render_template("agendar.html", mensagem=resultado)
 
+@app.route('/agenda')
+def lista():
+    cursor.execute("""
+        SELECT 
+            ag.data_hora_inicio,
+            c.nome,
+            c.telefone,
+            s.nome
+        FROM agendamentos ag
+        JOIN clientes c ON ag.cliente_id = c.id
+        JOIN servicos s ON ag.servico_id = s.id
+        ORDER BY ag.data_hora_inicio
+    """)
 
+    dados = cursor.fetchall()
+
+    return render_template("lista.html", agendamentos=dados)
 
 #Para rodar
 if __name__ == '__main__':

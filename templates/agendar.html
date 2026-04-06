@@ -7,7 +7,11 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Para rodar no FLASK sem dar erro -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style-agendar.css') }}"> <!-- Para rodar no FLASK sem dar erro -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playwrite+IE:wght@100..400&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
         <title>Kurly Studio</title>
     </head>
     
@@ -18,38 +22,40 @@
             <h1>Agendamento</h1>
             
         
-            <form id="agendamento">
-        
+            <form action="/agendar" method="POST" id="agendamento" novalidate>
+
                 <div class="input-group">
-                <input type="text" id="nome" placeholder=" ">
-                <label>Nome da cliente</label>
+                    <input type="text" name="nome" id="nome" required>
+                    <label>Nome da cliente</label>
                 </div>
-        
+
                 <div class="input-group">
-                <input type="email" id="email" placeholder=" ">
-                <label>Email</label>
+                    <input type="text" name="telefone" id="telefone" required>
+                    <label>Telefone</label>
                 </div>
-        
+
                 <div class="input-group">
-                <input type="password" id="senha" placeholder=" ">
-                <label>Senha</label>
+                    <select name="servico" id="servico" required>
+                        <option value="" disabled selected></option>
+                        <option value="1">Corte</option>
+                        <option value="2">Pintura</option>
+                        <option value="3">Escova</option>
+                    </select>
+                    <label>Serviço</label>
                 </div>
-        
+
                 <div class="input-group">
-                <input type="password" id="repetirSenha" placeholder=" ">
-                <label>Repetir Senha</label>
+                    <input type="datetime-local" name="inicio" id="inicio" required>
+                    <label>Data e horário</label>
                 </div>
-        
-                <div class="input-group">
-                <input type="text" id="telefone" placeholder=" ">
-                <label>Telefone</label>
-                </div>
-        
-                <button type="submit">Criar Conta</button>
-        
+
+                <button type="submit">Agendar</button>
+
             </form>
         
             </div>
         </section>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="{{ url_for('static', filename='script-agendar.js') }}"></script>
     </body>
 </html>
