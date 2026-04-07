@@ -1,20 +1,23 @@
 :root{
-    --bg: #0f0f12;
-    --card: #1a1a1f;
-    --border: #2a2a32;
+    --bg: #FFF5F7;
+    --card: #ffffff;
+    --border: rgba(233, 30, 99, 0.1);
 
-    --primary: #7c5cff;
-    --text: #f5f5f5;
-    --sub: #9a9aa3;
+    --primary: #E91E63;
+    --primary-soft: rgba(233, 30, 99, 0.1);
+
+    --text: #2D1B1E;
+    --sub: #8B6E75;
+
+    --danger: #DC2626;
 }
 
 body{
     margin: 0;
     font-family: "Inter", sans-serif;
-    background: linear-gradient(135deg, #0f0f12, #1a1a1f);
+    background: linear-gradient(135deg, #FFF5F7, #FFD4E0);
 }
 
-/* HEADER */
 #cabecalhoInicial{
     padding: 20px 40px;
 }
@@ -27,118 +30,155 @@ body{
 
 .opcoesIniciais img{
     width: 90px;
-    filter: drop-shadow(0 0 6px rgba(124,92,255,0.4));
 }
 
 .opcoesIniciais button{
-    padding: 10px 20px;
-    border-radius: 40px;
-    border: 1px solid var(--border);
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: none;
 
-    background: var(--card);
-    color: var(--text);
+    background: var(--primary);
+    color: white;
 
     cursor: pointer;
     transition: 0.3s;
 }
 
 .opcoesIniciais button:hover{
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(124,92,255,0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(233, 30, 99, 0.3);
 }
 
 
-/* LISTA */
 .lista-agendamentos{
-    max-width: 500px;
-    margin: 20px auto;
+    max-width: 600px;
+    margin: 30px auto;
     padding: 10px;
 }
 
-/* CARD */
 .item-agendamento{
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 
     background: var(--card);
-    padding: 18px;
-    border-radius: 40px;
-    margin-bottom: 15px;
+    padding: 16px;
+    border-radius: 18px;
+    margin-bottom: 12px;
 
     border: 1px solid var(--border);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+
     transition: 0.3s;
 }
 
 .item-agendamento:hover{
-    transform: scale(1.02);
-    box-shadow: 0 0 15px rgba(124,92,255,0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(233, 30, 99, 0.15);
 }
 
 
-/* HORA */
-.hora{
+.data{
     min-width: 65px;
-    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     font-weight: 600;
-    font-size: 15px;
     color: var(--primary);
 
-    background: rgba(124,92,255,0.15);
-    padding: 8px 10px;
-    border-radius: 20px;
+    background: var(--primary-soft);
+    padding: 10px;
+    border-radius: 12px;
+    text-align: center;
 }
 
+.conteudo{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
 
-/* TEXTO */
-.nome{
+.nome h1,
+.servico h2,
+.telefone h3{
+    margin: 0;
+    font-size: 14px;
     font-weight: 600;
+    display: inline;
+}
+
+.nome{
     color: var(--text);
 }
 
-.servico{
-    font-size: 14px;
-    color: var(--sub);
-}
-
+.servico,
 .telefone{
     font-size: 13px;
     color: var(--sub);
 }
 
 
-/* BOTÕES */
-button {
-    padding: 14px 24px;
-    border-radius: 10px;
-    font-size: 15px;
+.conteudo button{
+    margin-top: 6px;
+    margin-right: 6px;
+    padding: 20px 40px;
+    font-size: 12px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s;
-    font-weight: 500;
+    transition: 0.2s;
 }
 
-/* ALTERAR */
 #alterar{
-    background-color: var(--primary);
+    background: var(--primary);
     color: white;
     border: none;
 }
 
 #alterar:hover{
-    box-shadow: 0 0 12px rgba(124,92,255,0.6);
+    box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
     transform: scale(1.05);
 }
 
-/* EXCLUIR */
 #excluir{
-    background-color: transparent;
-    color: #ff5c5c;
-    border: 1px solid #ff5c5c;
+    background: transparent;
+    color: var(--danger);
+    border: 1px solid var(--danger);
 }
 
 #excluir:hover{
-    background-color: #ff5c5c;
+    background: var(--danger);
     color: white;
+}
+
+.inicio{
+    position: fixed; 
+    top: 40px;
+    right: 40px;
+
+    padding: 30px 46px;
+    border-radius: 12px;
+
+    background: var(--card);
+    color: var(--primary);
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+
+    border: 1px solid var(--border);
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    box-shadow:1px 1px var(--text) ;
+}
+
+.inicio:hover{
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(233, 30, 99, 0.3);
 }

@@ -1,18 +1,18 @@
 :root{
-    --bg: #0f0f12;
-    --card: #1a1a1f;
-    --input: #1f1f25;
-    --border: #2a2a32;
+    --bg: #FFF5F7;
+    --card: #ffffff;
+    --input: #FFF0F3;
+    --border: rgba(233, 30, 99, 0.15);
 
-    --primary: #7c5cff;
-    --text: #f5f5f5;
-    --sub: #9a9aa3;
+    --primary: #E91E63;
+    --text: #2D1B1E;
+    --sub: #8B6E75;
 }
 
 body{
     margin: 0;
     font-family: "Inter", sans-serif;
-    background: linear-gradient(135deg, #0f0f12, #1a1a1f);
+    background: linear-gradient(135deg, #FFF5F7, #FFD4E0);
 }
 
 .agendamento{
@@ -27,7 +27,7 @@ body{
     padding: 40px;
     background: var(--card);
     border-radius: 40px;
-    box-shadow: 0 25px 40px rgba(0,0,0,0.6);
+    box-shadow: 0 20px 40px rgba(233, 30, 99, 0.15);
     text-align: center;
 }
 
@@ -35,11 +35,11 @@ h1{
     margin-bottom: 25px;
     color: var(--primary);
     font-family: "Playwrite IE", cursive;
-    font-optical-sizing: auto;
     font-weight: 500;
-    font-style: normal;
 }
 
+
+/* Sequencias de input group que faz a transição do label e troca de cor pelo id dos labels */
 .input-group{
     position: relative;
     margin-top: 20px;
@@ -54,14 +54,9 @@ h1{
     background: var(--input);
     color: var(--text);
     font-size: 14px;
-
     appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
     cursor: pointer;
-
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .input-group label{
@@ -80,7 +75,7 @@ h1{
 .input-group input:focus,
 .input-group select:focus{
     border-color: var(--primary);
-    box-shadow: 0 0 8px rgba(124, 92, 255, 0.4);
+    box-shadow: 0 0 8px rgba(233, 30, 99, 0.3);
 }
 
 .input-group input:focus + label,
@@ -92,14 +87,14 @@ h1{
     color: var(--primary);
 }
 
-/* datetime fix */
+/* Arrumar o bug da hora sobreposta, deixando ela direto em cima  */
 .input-group input[type="datetime-local"] + label {
     top: -8px;
     font-size: 11px;
     color: var(--primary);
 }
 
-button{
+#agendar{
     width: 100%;
     margin-top: 25px;
     padding: 14px;
@@ -113,7 +108,37 @@ button{
     transition: 0.3s;
 }
 
-button:hover{
-    transform: scale(1.03);
-    box-shadow: 0 0 14px rgba(124, 92, 255, 0.6);
+#agendar:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(233, 30, 99, 0.3);
+}
+
+.inicio{
+    position: fixed;
+    top: 40px;
+    right: 40px;
+
+    padding: 30px 46px;
+    border-radius: 12px;
+
+    background: var(--card);
+    color: var(--primary);
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+
+    border: 1px solid var(--border);
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    box-shadow:1px 1px var(--text) ;
+}
+
+.inicio:hover{
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(233, 30, 99, 0.3);
 }

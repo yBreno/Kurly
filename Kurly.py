@@ -43,6 +43,29 @@ def criar_tabelas():
 
     banco.commit()
 
+#Para criar os serviços ja default no banco de dados, para ja ter no sistema e na tabela servicos o tempo e o nome dos servicos pre definidos
+def servicos_default():
+    cursor.execute("SELECT COUNT(*) FROM servicos")
+    if cursor.fetchone()[0] == 0: #Se nao tiver nada em servicos ele taca a lista de serviços na tabela
+        servicos = [
+            ("Corte Feminino", 60),
+            ("Corte Masculino", 30),
+            ("Escova", 45),
+            ("Lavagem", 20),
+            ("Coloração", 120),
+            ("Luzes ou Mechas", 180),
+            ("Progressiva", 150),
+            ("Botox Capilar", 120),
+            ("Hidratação", 40),
+            ("Reconstrução", 60)
+        ]
+
+        cursor.executemany(
+            "INSERT INTO servicos (nome, tempo_minutos) VALUES (?, ?)",
+            servicos
+        )
+        banco.commit()
+    
 #Faço a verificação se alguma data passa por cima de outra, com base no inicio e no fim, se tiver alguma entre, ele para
 def verificacao(inicio, fim):
     cursor.execute("""
@@ -108,16 +131,22 @@ def formulario():
 #Apos o agendamento na rota formulario, vem para ca para pegar as informações do HTML
 @app.route('/agendar', methods=['POST'])
 def agendar():
-    nome = request.form['nome']
-    telefone = request.form['telefone']
-    servico_id = int(request.form['servico'])
-    inicio = request.form['inicio']
+    nome = request.form.get('nome')
+    telefone = request.form.get('telefone')
+    servico_id = request.form.get('servico')
+    inicio = request.form.get('inicio')
+
+    # validação se os campos estao vazios
+    if not nome or not telefone or not servico_id or not inicio:
+        return render_template("agendar.html", mensagem="Preencha todos os campos!") #Manda a mensagem pro script em HTML
+
+    servico_id = int(servico_id) #Volra pra int o servico para colocar no def na proxima linha
 
     resultado = criar_agendamento(nome, telefone, servico_id, inicio)
 
     return render_template("agendar.html", mensagem=resultado)
 
-@app.route('/lista')
+@app.route('/agenda')
 def lista():
     cursor.execute("""
         SELECT 
@@ -132,10 +161,13 @@ def lista():
     """)
 
     dados = cursor.fetchall()
+    
 
     return render_template("lista.html", agendamentos=dados)
+
 
 #Para rodar
 if __name__ == '__main__':
     criar_tabelas()
+    servicos_default()
     app.run(debug=True)

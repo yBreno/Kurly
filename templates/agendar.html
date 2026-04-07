@@ -11,12 +11,15 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playwrite+IE:wght@100..400&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
         <title>Kurly Studio</title>
     </head>
     
     <body>
-         <section class="agendamento">
+        <a href="/" class="inicio">Início</a>
+
+        <section class="agendamento">
             <div class="container">
         
             <h1>Agendamento</h1>
@@ -37,9 +40,16 @@
                 <div class="input-group">
                     <select name="servico" id="servico" required>
                         <option value="" disabled selected></option>
-                        <option value="1">Corte</option>
-                        <option value="2">Pintura</option>
+                        <option value="1">Corte Feminino</option>
+                        <option value="2">Corte Masculino</option>
                         <option value="3">Escova</option>
+                        <option value="4">Lavagem</option>
+                        <option value="5">Coloração</option>
+                        <option value="6">Luzes ou Mechas</option>
+                        <option value="7">Progressiva</option>
+                        <option value="8">Botox Capilar</option>
+                        <option value="9">Hidratação</option>
+                        <option value="10">Reconstrução</option>
                     </select>
                     <label>Serviço</label>
                 </div>
@@ -49,13 +59,25 @@
                     <label>Data e horário</label>
                 </div>
 
-                <button type="submit">Agendar</button>
+                <button type="submit" id="agendar">Agendar</button>
 
             </form>
-        
+            
+            
+            <!-- SCRIPT JAVASCRIPT PARA BOTÕES MAIS BONITOS -->
+            {% if mensagem %} 
+                <script> //Aqui ele vai testar se no retorno do html (a mensagem), vai ter algo escrito, se tiver ele verifica a mensagem em string
+                    Swal.fire({
+                    title: "Resultado",
+                    text: "{{ mensagem }}",
+                    icon: "{{ 'error' if 'indisponível' in mensagem or 'inválida' in mensagem or 'Preencha' in mensagem else 'success' }}" //Vai colcoar o icon de erro se na mensagem tiver a palavra indisponivel ou invalida se nao ele coloca o icon de sucesso
+                });
+                </script>
+            {% endif %}
+
+
             </div>
         </section>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="{{ url_for('static', filename='script-agendar.js') }}"></script>
+        
     </body>
 </html>

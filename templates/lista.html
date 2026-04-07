@@ -14,40 +14,59 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style-lista.css') }}"> <!-- Para rodar no FLASK sem dar erro -->
     <title>Agenda</title>
 </head>
-    <body>
+<body>
+         
         <header id="cabecalhoInicial">
             <div class="opcoesIniciais">
+                
                 <a href="/">
                     <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Kurly"> <!-- Para rodar no FLASK sem dar erro-->
                 </a>
 
-                <button>Inicio</button>
+                <a href="/" class="inicio">Início</a>
+
             </div>
         </header>
         
-        <!-- Lista de Agendamentos -->
+        
         <div class="lista-agendamentos">
+            
             <!-- Colocar as informações do Flask no HTML -->
             {% for ag in agendamentos %}
             <div class="item-agendamento">
 
-                <div class="hora">
-                    {{ ag[0][11:16] }} <!-- pega só hora formatada -->
+                <div class="data">
+                    <span class="dia">{{ ag[0][8:10] }}/{{ ag[0][5:7] }}/</span>  <!-- Fatiamento simples de string -->
+                    <span class="ano">{{ ag[0][0:4] }}</span>
+                </div>
+                <div class="data">
+                    <span class="hora">{{ ag[0][11:16] }}</span> <!-- Fatiamento do i[11] ate i[16]-->
                 </div>
 
                 <div class="conteudo">
-                    <p class="nome">{{ ag[1] }}</p> <!-- pega o nome -->
-                    <p class="servico">{{ ag[3] }}</p> <!-- pega o tipo de serviço -->
-                    <p class="telefone">{{ ag[2] }}</p> <!-- pega o telefone -->
-                    <button id="alterar">Alterar</button>
-                    <button id="excluir">Excluir</button>
+                    <p class="nome">
+                        Cliente: <span>{{ ag[1] }}</span> <!-- pega o nome da string-->
+                    </p>
+
+                    <p class="servico">
+                        Serviço: <span>{{ ag[3] }}</span> <!-- pega o tipo de servico da string-->
+                    </p>
+
+                    <p class="telefone">
+                        Telefone: <span>{{ ag[2] }}</span> <!-- pega o telefone da string-->
+                    </p>
+
+                    <div class="acoes">
+                        <button id="alterar">Alterar</button>
+                        <button id="excluir">Excluir</button>
+                    </div>
+
                 </div>
 
             </div>
-            {% endfor %} 
-            <!-- Tudo isso dentro do for -->
-
+            {% endfor %}
         </div>
+        
 
-    </body>
+</body>
 </html>

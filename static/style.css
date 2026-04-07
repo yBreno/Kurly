@@ -1,16 +1,15 @@
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background-color: #0f0f12; /* fundo escuro */
-    color: #f5f5f5; /* texto claro */
+    background: linear-gradient(135deg, #FFF5F7, #FFD4E0);
+    color: #2D1B1E;
 }
 
 
-/* Cabeçalho */
 #cabecalhoInicial {
-    background-color: #15151a;
+    background-color: rgba(255,255,255,0.9);
     padding: 15px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 10px rgba(233, 30, 99, 0.1);
 }
 
 .opcoesIniciais {
@@ -24,8 +23,8 @@ body {
 
 .opcoesIniciais img {
     width: 60px;
-    filter: drop-shadow(0 0 6px rgba(124,92,255,0.4)); /* glow jovem */
 }
+
 
 .menu-pc ul {
     display: flex;
@@ -37,18 +36,16 @@ body {
 
 .menu-pc a {
     text-decoration: none;
-    color: #d1d1d6;
+    color: #8B6E75;
     font-weight: 500;
     transition: 0.3s;
 }
 
 .menu-pc a:hover {
-    color: #7c5cff; /* roxo jovem */
+    color: #E91E63;
 }
 
 
-
-/* HERO */
 .hero {
     text-align: center;
     margin-top: 80px;
@@ -60,12 +57,10 @@ body {
 }
 
 .hero p {
-    color: #9a9aa3;
+    color: #8B6E75;
 }
 
 
-
-/* BOTÕES */
 .opcoes {
     display: flex;
     justify-content: center;
@@ -76,42 +71,41 @@ body {
 .opcoes button {
     padding: 14px 24px;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 15px;
     cursor: pointer;
     transition: 0.3s;
     font-weight: 500;
 }
 
-/* BOTÃO PRINCIPAL */
+
 .agendamento {
-    background-color: #7c5cff;
+    background-color: #E91E63;
     color: white;
 }
 
 .agendamento:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 14px rgba(124, 92, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
 }
 
-/* BOTÃO SECUNDÁRIO */
+
 .agenda {
-    background-color: #1f1f25;
-    color: #f5f5f5;
-    border: 1px solid #2a2a32;
+    background-color: #ffffff;
+    color: #2D1B1E;
+    border: 1px solid rgba(233, 30, 99, 0.2);
 }
 
 .agenda:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 10px rgba(124, 92, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(233, 30, 99, 0.2);
 }
 
 
-/* Rodapé */
 footer {
     margin-top: 100px;
     text-align: center;
     font-size: 12px;
-    color: #7a7a85;
+    color: #8B6E75;
     padding-bottom: 20px;
 }
