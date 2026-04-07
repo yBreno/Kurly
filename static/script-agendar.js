@@ -1,6 +1,4 @@
-const formAgendamento = document.getElementById("agendamento");
-
-formAgendamento.addEventListener("submit", function(event) {
+formAgendamento.addEventListener("submit", async function(event) {
     event.preventDefault();
 
     const nome = document.getElementById("nome").value.trim();
@@ -15,24 +13,21 @@ formAgendamento.addEventListener("submit", function(event) {
         Swal.fire({
             title: "Erro!",
             text: "Todos os campos devem ser preenchidos!",
-            icon: "error",
-            background: "#0f0f1a",
-            color: "#fff",
-            confirmButtonColor: "#7c3aed"
+            icon: "error"
         });
         return;
     }
 
     if (isNaN(dataObj)) {
-    Swal.fire({
-        title: "Erro!",
-        text: "Data inválida!",
-        icon: "error"
-    });
-    return;
+        Swal.fire({
+            title: "Erro!",
+            text: "Data inválida!",
+            icon: "error"
+        });
+        return;
     }
 
-    if (ano < 2024 || ano > 2100) {
+    if (ano < 2026 || ano > 2100) {
         Swal.fire({
             title: "Erro!",
             text: "Ano inválido!",
@@ -41,14 +36,27 @@ formAgendamento.addEventListener("submit", function(event) {
         return;
     }
 
-    Swal.fire({
-        title: "Sucesso!",
-        text: "Agendamento criado!",
-        icon: "success",
-        background: "#0f0f1a",
-        color: "#fff",
-        confirmButtonColor: "#7c3aed"
-    }).then(() => {
-        formAgendamento.submit(); 
+    // Eu pego o resultado do teste em python, ai continuo com os botões 
+    const formData = new FormData(formAgendamento);
+
+    const response = await fetch("/agendar", {
+        method: "POST",
+        body: formData
     });
+
+    const dataResponse = await response.json();
+
+    if (dataResponse.mensagem === "Agendamento criado com sucesso!") {
+        Swal.fire({
+            title: "Sucesso!",
+            text: dataResponse.mensagem,
+            icon: "success"
+        });
+    } else {
+        Swal.fire({
+            title: "Erro!",
+            text: dataResponse.mensagem,
+            icon: "error"
+        });
+    }
 });

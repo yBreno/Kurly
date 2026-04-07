@@ -4,13 +4,13 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-
+#Crio o banco.db arquivo, e testo pra ver se tem confitos
 banco = sqlite3.connect('banco.db', check_same_thread=False)
-cursor = banco.cursor()
+cursor = banco.cursor() #Crio o cursor dentro da variavel banco que tem o arquivo nele
 cursor.execute("PRAGMA foreign_keys = ON") #Para rodar as chaves estrangeiras
 
 
-
+#Crio minhas 3 tabelas e dou commit
 def criar_tabelas():
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS clientes (
@@ -43,7 +43,7 @@ def criar_tabelas():
 
     banco.commit()
 
-
+#Faço a verificação se alguma data passa por cima de outra, com base no inicio e no fim, se tiver alguma entre, ele para
 def verificacao(inicio, fim):
     cursor.execute("""
         SELECT 1 FROM agendamentos
@@ -53,33 +53,29 @@ def verificacao(inicio, fim):
         )
     """, (inicio, fim))
 
-    return cursor.fetchone() is None
+    return cursor.fetchone() is None #Retorna True se nao tiver nada que da conflito
 
 
 def criar_agendamento(cliente_nome, telefone, servico_id, inicio):
     
     inicio_dt = datetime.strptime(inicio, "%Y-%m-%dT%H:%M")
+    #Passo a data de inicio para outra variavel para manter ela em formato strp
 
-
-    if inicio_dt.year < 2024 or inicio_dt.year > 2100:
-        return "Data inválida!"
+    if inicio_dt.year < 2026 or inicio_dt.year > 2100:
+        return "Data inválida!" #Verifico se a data ta dentro desse range
     
 
     cursor.execute("INSERT INTO clientes (nome, telefone) VALUES (?, ?)", (cliente_nome, telefone))
-    cliente_id = cursor.lastrowid
+    cliente_id = cursor.lastrowid #Se passou, coloco na lista clientes com o nome, telefone e com o ultimo ID
 
     cursor.execute("SELECT tempo_minutos FROM servicos WHERE id = ?", (servico_id,))
-    resultado = cursor.fetchone()
+    resultado = cursor.fetchone() #Pego o tempo do servico escolhido para fazer uma verificação
+    tempo = resultado[0] #Pego o tempo
 
-    if resultado is None:
-        return "Serviço não encontrado!"
-
-    tempo = resultado[0]
-
-    #Calcula a hora do fim do serviço para testes
+    #Calcula a hora do fim do serviço para teste 
     fim_dt = inicio_dt + timedelta(minutes=tempo)
 
-    #Formata para 
+    #Formata para strf denovo para mandar para verificação, mandando o incio do servico e o fim do serviço
     inicio_formatado = inicio_dt.strftime("%Y-%m-%d %H:%M")
     fim_formatado = fim_dt.strftime("%Y-%m-%d %H:%M")
 
@@ -87,7 +83,7 @@ def criar_agendamento(cliente_nome, telefone, servico_id, inicio):
     if not verificacao(inicio_formatado, fim_formatado):
         return "Horário indisponível!"
 
-    # salvar agendamento
+    # Se passar, ele salva o agendamento com o id, servico e inicio e fim
     cursor.execute("""
     INSERT INTO agendamentos (cliente_id, servico_id, data_hora_inicio, data_hora_fim)
     VALUES (?, ?, ?, ?)
@@ -109,7 +105,7 @@ def index():
 def formulario():
     return render_template("agendar.html")
 
-#Apos o agendamento na rota formulario, vem para ca
+#Apos o agendamento na rota formulario, vem para ca para pegar as informações do HTML
 @app.route('/agendar', methods=['POST'])
 def agendar():
     nome = request.form['nome']
@@ -121,7 +117,7 @@ def agendar():
 
     return render_template("agendar.html", mensagem=resultado)
 
-@app.route('/agenda')
+@app.route('/lista')
 def lista():
     cursor.execute("""
         SELECT 
