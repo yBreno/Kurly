@@ -1,6 +1,7 @@
 import sqlite3
 from datetime import datetime, timedelta
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
+
 
 app = Flask(__name__)
 
@@ -131,25 +132,42 @@ def formulario():
 #Apos o agendamento na rota formulario, vem para ca para pegar as informações do HTML
 @app.route('/agendar', methods=['POST'])
 def agendar():
+    id = request.form.get('id')  #Pego o ID do html, para verificar se é uma alteração ou agendamento comum
+
     nome = request.form.get('nome')
     telefone = request.form.get('telefone')
-    servico_id = request.form.get('servico')
     inicio = request.form.get('inicio')
+    servico = request.form.get('servico')
 
-    # validação se os campos estao vazios
-    if not nome or not telefone or not servico_id or not inicio:
-        return render_template("agendar.html", mensagem="Preencha todos os campos!") #Manda a mensagem pro script em HTML
+    if not servico:
+        return render_template("agendar.html", mensagem="Selecione um serviço!")
 
-    servico_id = int(servico_id) #Volra pra int o servico para colocar no def na proxima linha
+    servico_id = int(servico)
+    
 
-    resultado = criar_agendamento(nome, telefone, servico_id, inicio)
+    if id: #Se tiver id ele edita
+        cursor.execute("""
+            UPDATE clientes
+            SET nome=?, telefone=?
+            WHERE id = (
+                SELECT cliente_id FROM agendamentos WHERE id=?
+            )
+        """, (nome, telefone, id))
 
+        banco.commit()
+
+        resultado = "Agendamento atualizado com sucesso!"
+
+    else:
+        #Ai ele cria em vez de atualizar
+        resultado = criar_agendamento(nome, telefone, servico_id, inicio)
     return render_template("agendar.html", mensagem=resultado)
 
 @app.route('/agenda')
 def lista():
     cursor.execute("""
         SELECT 
+            ag.id,
             ag.data_hora_inicio,
             c.nome,
             c.telefone,
@@ -165,6 +183,45 @@ def lista():
 
     return render_template("lista.html", agendamentos=dados)
 
+@app.route('/editar/<int:id>') #Aqui eu crio a rota de edição para alterar o agendamento
+def editar(id):
+    
+    cursor.execute("""
+    SELECT 
+        ag.id,
+        ag.data_hora_inicio,
+        c.nome,
+        c.telefone,
+        s.id
+    FROM agendamentos ag
+    LEFT JOIN clientes c ON ag.cliente_id = c.id
+    LEFT JOIN servicos s ON ag.servico_id = s.id
+    WHERE ag.id = ?
+    """, (id,))
+    agendamento = cursor.fetchone()
+    
+    
+    #Pego a data de agendamento e transfiro pro formato strp
+    data_agendamento = datetime.strptime(agendamento[1], "%Y-%m-%d %H:%M")
+
+    agora = datetime.now() #pego a hora de agora
+
+    diferenca = data_agendamento - agora #calculo a diferença de agora ate o dia 
+ 
+    pode_editar = diferenca.total_seconds() > (2 * 24 * 60 * 60) #Logica para calcular 2 dias, calcula 60 ssegundos * 60 por 24 hrs por 2
+
+    return render_template(
+        "agendar.html",
+        agendamento=agendamento,
+        pode_editar=pode_editar
+    )
+
+@app.route('/excluir/<int:id>')
+def excluir(id):
+    cursor.execute("DELETE FROM agendamentos WHERE id = ? ",(id,))
+    banco.commit()
+    
+    return redirect ('/agenda')
 
 #Para rodar
 if __name__ == '__main__':

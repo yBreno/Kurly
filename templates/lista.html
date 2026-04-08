@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playwrite+IE:wght@100..400&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style-lista.css') }}"> <!-- Para rodar no FLASK sem dar erro -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Agenda</title>
 </head>
 <body>
@@ -28,7 +29,24 @@
             </div>
         </header>
         
-        
+        <script>
+            function confirmarExclusao(id){
+                Swal.fire({
+                    title: "Tem certeza?",
+                    text: "Isso não pode ser desfeito!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Sim, excluir",
+                    cancelButtonText: "Cancelar",
+                    confirmButtonColor: "#E91E63",
+                    cancelButtonColor: "#999"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/excluir/" + id + "?sucesso=1";
+                    }
+                });
+            }
+        </script>
         <div class="lista-agendamentos">
             
             <!-- Colocar as informações do Flask no HTML -->
@@ -36,16 +54,16 @@
             <div class="item-agendamento">
 
                 <div class="data">
-                    <span class="dia">{{ ag[0][8:10] }}/{{ ag[0][5:7] }}/</span>  <!-- Fatiamento simples de string -->
-                    <span class="ano">{{ ag[0][0:4] }}</span>
+                    <span class="dia">{{ ag[1][8:10] }}/{{ ag[1][5:7] }}/</span>  <!-- Fatiamento simples de string -->
+                    <span class="ano">{{ ag[1][0:4] }}</span>
                 </div>
                 <div class="data">
-                    <span class="hora">{{ ag[0][11:16] }}</span> <!-- Fatiamento do i[11] ate i[16]-->
+                    <span class="hora">{{ ag[1][11:16] }}</span> <!-- Fatiamento do i[11] ate i[16]-->
                 </div>
 
                 <div class="conteudo">
                     <p class="nome">
-                        Cliente: <span>{{ ag[1] }}</span> <!-- pega o nome da string-->
+                        Cliente: <span>{{ ag[2] }}</span> <!-- pega o nome da string-->
                     </p>
 
                     <p class="servico">
@@ -53,12 +71,15 @@
                     </p>
 
                     <p class="telefone">
-                        Telefone: <span>{{ ag[2] }}</span> <!-- pega o telefone da string-->
+                        Telefone: <span>{{ ag[4] }}</span> <!-- pega o telefone da string-->
                     </p>
 
                     <div class="acoes">
-                        <button id="alterar">Alterar</button>
-                        <button id="excluir">Excluir</button>
+                        <a href="/editar/{{ ag[0] }}"><button id="alterar">Alterar</button></a>
+                        
+                        <button onclick="confirmarExclusao('{{ ag[0] }}')" id="excluir">Excluir</button>
+
+                        
                     </div>
 
                 </div>

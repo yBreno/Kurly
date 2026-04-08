@@ -23,46 +23,65 @@
             <div class="container">
         
             <h1>Agendamento</h1>
-            
+            {% if agendamento and not pode_editar %}
+
+                <p style="color: red; font-weight: 500; text-align:center;">
+                    Alterações só podem ser feitas com mais de 2 dias de antecedência.<br>
+                    Ligue para o suporte para remarcar
+                </p>
+
+                <button disabled style="width:100%; margin-top:20px;">
+                    Alteração bloqueada
+                </button>
+
+            {% else %}
         
             <form action="/agendar" method="POST" id="agendamento" novalidate>
 
                 <div class="input-group">
-                    <input type="text" name="nome" id="nome" required>
+                    <input type="text" name="nome" 
+                    value="{{ agendamento[2] if agendamento else '' }}"> <!--Aqui eu pego do back, se for clicado o botao de alterar ele ja vem com os dados, se nao vem vazio-->
                     <label>Nome da cliente</label>
                 </div>
 
                 <div class="input-group">
-                    <input type="text" name="telefone" id="telefone" required>
+                    <input type="text" name="telefone" 
+                    value="{{ agendamento[3] if agendamento else '' }}">
                     <label>Telefone</label>
                 </div>
 
                 <div class="input-group">
                     <select name="servico" id="servico" required>
-                        <option value="" disabled selected></option>
-                        <option value="1">Corte Feminino</option>
-                        <option value="2">Corte Masculino</option>
-                        <option value="3">Escova</option>
-                        <option value="4">Lavagem</option>
-                        <option value="5">Coloração</option>
-                        <option value="6">Luzes ou Mechas</option>
-                        <option value="7">Progressiva</option>
-                        <option value="8">Botox Capilar</option>
-                        <option value="9">Hidratação</option>
-                        <option value="10">Reconstrução</option>
+                        <option value="" disabled {% if not agendamento %}selected{% endif %}></option>
+                        <option value="1" {% if agendamento and agendamento[4]==1 %} selected{% endif %} required>Corte Feminino</option> <!--Se vier do back ele ja seleciona o serviço, se nao vem vazio-->
+                        <option value="2" {% if agendamento and agendamento[4]==2 %} selected{% endif %} required>Corte Masculino</option>
+                        <option value="3" {% if agendamento and agendamento[4]==3 %} selected{% endif %} required>Escova</option>
+                        <option value="4" {% if agendamento and agendamento[4]==4 %} selected{% endif %} required>Lavagem</option>
+                        <option value="5" {% if agendamento and agendamento[4]==5 %} selected{% endif %} required>Coloração</option>
+                        <option value="6" {% if agendamento and agendamento[4]==6 %} selected{% endif %} required>Luzes ou Mechas</option>
+                        <option value="7" {% if agendamento and agendamento[4]==7 %} selected{% endif %} required>Progressiva</option>
+                        <option value="8" {% if agendamento and agendamento[4]==8 %} selected{% endif %} required>Botox Capilar</option>
+                        <option value="9" {% if agendamento and agendamento[4]==9 %} selected{% endif %} required>Hidratação</option>
+                        <option value="10" {% if agendamento and agendamento[4]==10 %} selected{% endif %} required>Reconstrução</option>
                     </select>
                     <label>Serviço</label>
                 </div>
 
                 <div class="input-group">
-                    <input type="datetime-local" name="inicio" id="inicio" required>
+                    <input type="datetime-local" name="inicio" 
+                    value="{{ agendamento[1].replace(' ', 'T') if agendamento else '' }}" required>
                     <label>Data e horário</label>
                 </div>
 
                 <button type="submit" id="agendar">Agendar</button>
 
+                <input type="hidden" name="id" 
+                value="{{ agendamento[0] if agendamento else '' }}">
+                
+                
+
             </form>
-            
+            {% endif %}
             
             <!-- SCRIPT JAVASCRIPT PARA BOTÕES MAIS BONITOS -->
             {% if mensagem %} 
@@ -70,7 +89,7 @@
                     Swal.fire({
                     title: "Resultado",
                     text: "{{ mensagem }}",
-                    icon: "{{ 'error' if 'indisponível' in mensagem or 'inválida' in mensagem or 'Preencha' in mensagem else 'success' }}" //Vai colcoar o icon de erro se na mensagem tiver a palavra indisponivel ou invalida se nao ele coloca o icon de sucesso
+                    icon: "{{ 'error' if 'indisponível' in mensagem or 'inválida' in mensagem or 'Preencha' in mensagem or 'Selecione' in mensagem else 'success' }}" //Vai colcoar o icon de erro se na mensagem tiver a palavra indisponivel ou invalida se nao ele coloca o icon de sucesso
                 });
                 </script>
             {% endif %}
