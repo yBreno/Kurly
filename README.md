@@ -1,6 +1,6 @@
 # 💇‍♀️ Kurly - Sistema de Agendamento
 
-![](documentacao/Video-Showcase-No-Voice.gif)
+![](documentacao/fotos/Video-Showcase-No-Voice.gif)
 
 ---
 
@@ -99,9 +99,9 @@ O sistema foi adaptado para diferentes tamanhos de tela, com foco em:
 
 ## 🎨 Preview
 
-![](documentacao/index.png)
-![](documentacao/cadastro.png)
-![](documentacao/lista.png)
+![](documentacao/fotos/index.png)
+![](documentacao/fotos/cadastro.png)
+![](documentacao/fotos/lista.png)
 
 ---
 
