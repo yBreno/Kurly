@@ -5,13 +5,12 @@ body {
     color: #2D1B1E;
 }
 
-
 #cabecalhoInicial {
     background-color: rgba(255,255,255,0.9);
     padding: 15px 0;
     box-shadow: 0 2px 10px rgba(233, 30, 99, 0.1);
 }
-
+/* Cabeçalho (Logo e opções) */
 .opcoesIniciais {
     max-width: 1000px;
     margin: 0 auto;
@@ -45,7 +44,7 @@ body {
     color: #E91E63;
 }
 
-
+/* Corpo do site (Nome e botões) */
 .hero {
     text-align: center;
     margin-top: 80px;
@@ -89,7 +88,6 @@ body {
     box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
 }
 
-
 .agenda {
     background-color: #ffffff;
     color: #2D1B1E;
@@ -101,7 +99,7 @@ body {
     box-shadow: 0 6px 15px rgba(233, 30, 99, 0.2);
 }
 
-
+/* Rodape */
 footer {
     margin-top: 100px;
     text-align: center;

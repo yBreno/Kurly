@@ -1,3 +1,4 @@
+/* As cores do site em variaveis */
 :root{
     --bg: #FFF5F7;
     --card: #ffffff;
@@ -40,6 +41,7 @@ h1{
 
 
 /* Sequencias de input group que faz a transição do label e troca de cor pelo id dos labels */
+/* Sistema que muda o nome do campo no formulario para cima com uma transição ao clicar */
 .input-group{
     position: relative;
     margin-top: 20px;
@@ -87,6 +89,7 @@ h1{
     color: var(--primary);
 }
 
+
 /* Arrumar o bug da hora sobreposta, deixando ela direto em cima  */
 .input-group input[type="datetime-local"] + label {
     top: -8px;
@@ -94,6 +97,7 @@ h1{
     color: var(--primary);
 }
 
+/* Botao agendar */
 #agendar{
     width: 100%;
     margin-top: 25px;
@@ -113,6 +117,7 @@ h1{
     box-shadow: 0 10px 20px rgba(233, 30, 99, 0.3);
 }
 
+/* Botao de voltar para tela inicial */
 .inicio{
     position: fixed;
     top: 40px;

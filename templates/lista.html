@@ -29,7 +29,7 @@
             </div>
         </header>
         
-        <script>
+        <script> //Script do botão de exclusão com o Sweet Alert
             function confirmarExclusao(id){
                 Swal.fire({
                     title: "Tem certeza?",
@@ -78,16 +78,11 @@
                         <a href="/editar/{{ ag[0] }}"><button id="alterar">Alterar</button></a>
                         
                         <button onclick="confirmarExclusao('{{ ag[0] }}')" id="excluir">Excluir</button>
-
-                        
                     </div>
-
                 </div>
-
             </div>
             {% endfor %}
         </div>
         
-
 </body>
 </html>
