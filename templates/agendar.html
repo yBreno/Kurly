@@ -42,13 +42,13 @@
 
                     <div class="input-group">
                         <input type="text" name="nome" 
-                        value="{{ agendamento[2] if agendamento else '' }}"> <!--Aqui eu pego do back. Se for clicado o botao de alterar ele vem com os dados do agendamento, se naotiver dados vem vazio-->
+                        value="{{ agendamento[2] if agendamento else '' }}" required > <!--Aqui eu pego do back. Se for clicado o botao de alterar ele vem com os dados do agendamento, se naotiver dados vem vazio-->
                         <label>Nome da cliente</label>
                     </div>
 
                     <div class="input-group">
                         <input type="text" name="telefone" 
-                        value="{{ agendamento[3] if agendamento else '' }}"> <!-- Pega as informações do telefone, se vier Null deixa vazio-->
+                        value="{{ agendamento[3] if agendamento else '' }}" required> <!-- Pega as informações do telefone, se vier Null deixa vazio-->
                         <label>Telefone</label>
                     </div>
 
