@@ -107,3 +107,24 @@ footer {
     color: #8B6E75;
     padding-bottom: 20px;
 }
+
+
+.opcoes a{
+    display: block;
+}
+
+@media (max-width: 650px) {
+    .opcoes {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .opcoes a {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .opcoes button {
+        width: 100%;
+    }
+}
