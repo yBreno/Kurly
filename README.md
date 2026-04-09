@@ -137,8 +137,9 @@ Este projeto me permitiu evoluir em:
 
 ## 👨‍💻 Autor
 
-Feito por **Breno (Brene)**
+Feito por **Breno**
 💜 Criativo, técnico e apaixonado por tecnologia
+Este projeto foi desenvolvido para a Avaliação Técnica DSIN Tecnologia da Informação.
 
 ---
 
