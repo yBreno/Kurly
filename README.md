@@ -99,9 +99,9 @@ O sistema foi adaptado para diferentes tamanhos de tela, com foco em:
 
 ## 🎨 Preview
 
-![](readme/index.png)
-![](readme/agendamento.png)
-![](readme/lista.png)
+![](documentacao/index.png)
+![](documentacao/cadastro.png)
+![](documentacao/lista.png)
 
 ---
 
