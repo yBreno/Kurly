@@ -288,8 +288,11 @@ def excluir(id):
     return redirect ('/agenda')
     #manda de volta para agenda com redirect que vem do Flask
 
+
+criar_tabelas()     
+servicos_default()
+#Crio as tabelas e os serviçoes default
+
 #Para rodar o site, inicializo com a criação de tabelas, coloco os serviços dentro da tabela de servicos e inicio a variavel app que criei no começo
 if __name__ == '__main__':
-    criar_tabelas()
-    servicos_default()
     app.run(debug=True)
