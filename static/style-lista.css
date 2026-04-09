@@ -17,6 +17,8 @@ body{
     margin: 0;
     font-family: "Inter", sans-serif;
     background: linear-gradient(135deg, #FFF5F7, #FFD4E0);
+    padding-top: 100px;
+
 }
 
 #cabecalhoInicial{
@@ -185,4 +187,104 @@ body{
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(233, 30, 99, 0.3);
+}
+
+
+/* Responsividade basica */
+@media (max-width: 650px) {
+
+     /* Container centralizado */
+    .opcoesIniciais {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Tira a logo */
+    #cabecalhoInicial img {
+        display: none;
+    }
+
+    /* Botao */
+    .inicio {
+        position: static;
+        margin: 20px auto;
+        display: block;
+        padding: 50px 120px;
+        text-align: center;
+    }
+
+
+    /* HERO */
+    .hero {
+        margin-top: 60px;
+        padding: 0 15px;
+    }
+
+    /* FORM */
+    .form-container {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    /* LISTA */
+    .item-agendamento {
+        flex-direction: column;
+        align-items: center; 
+        text-align: center;
+        gap: 12px;
+    }
+
+    /* DATA E HORAS */
+    .data {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 30px;
+        font-weight: 700;
+
+        padding: 10px 16px;
+        border-radius: 14px;
+
+        background: rgba(233, 30, 99, 0.1);
+        color: #E91E63;
+    }
+
+    .data + .data {
+        margin-top: 5px;
+    }
+
+    /* TEXTO CENTRAL */
+    .conteudo {
+        align-items: center;
+        text-align: center;
+    }
+
+    .nome {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .servico,
+    .telefone {
+        font-size: 13px;
+    }
+
+    /* BOTÕES CENTRALIZADOS */
+    .acoes {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .acoes button a {
+        width: 100%;
+        max-width: 250px;
+        padding: 10px;
+        font-size: 14px;
+    }
 }

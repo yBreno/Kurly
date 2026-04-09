@@ -113,7 +113,13 @@ footer {
     display: block;
 }
 
+/* Responsividade basica */
 @media (max-width: 650px) {
+    
+    #opcoesIniciais {
+        display: none;
+    }
+
     .opcoes {
         flex-direction: column;
         align-items: center;
