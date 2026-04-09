@@ -31,8 +31,6 @@ O projeto foi desenvolvido como parte de um desafio técnico, com o objetivo de 
 
 ## ⚙️ Funcionalidades
 
-✅ Cadastro de clientes 
-
 ✅ Agendamento de serviços 
 
 ✅ Validação de conflitos de horário 
