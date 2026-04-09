@@ -25,6 +25,7 @@ O projeto foi desenvolvido como parte de um desafio técnico, com o objetivo de 
 * SQLite
 * HTML5
 * CSS3
+* JavaScript
 
 ---
 
