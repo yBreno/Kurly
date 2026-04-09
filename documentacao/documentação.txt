@@ -8,6 +8,8 @@ O sistema realiza validações de regras de negócio, como verificação de conf
 
 Para este projeto, o sistema foi adaptado para uso individual, sendo a Leila a responsável pelo gerenciamento dos agendamentos.
 
+
+
 ========================================
 SISTEMA KURLY - CASOS DE USO
 ========================================
@@ -36,8 +38,6 @@ Fluxo Principal:
 8. O sistema salva o agendamento
 9. O sistema exibe mensagem de sucesso
 
-
-
 Fluxos Alternativos:
 
 6A. Dados inválidos:
@@ -46,6 +46,7 @@ Fluxos Alternativos:
 7A. Conflito de horário:
 - O sistema impede o agendamento
 - O sistema informa que já existe um horário ocupado
+
 
 
 ========================================
@@ -61,6 +62,7 @@ Fluxo Principal:
 1. Leila acessa a página de agenda
 2. O sistema consulta o banco de dados
 3. O sistema exibe a lista de agendamentos
+
 
 
 ========================================
@@ -93,6 +95,7 @@ Fluxos Alternativos:
 6B. Alteração com menos de 2 dias:
 - O sistema bloqueia a edição
 - O sistema informa que não é possível alterar o agendamento com menos de 2 dias de antecedência
+
 
 
 ========================================
