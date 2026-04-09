@@ -1,6 +1,6 @@
 # 💇‍♀️ Kurly - Sistema de Agendamento
 
-![](readme/preview.png)
+![](documentacao/Video-Showcase-No-Voice.gif)
 
 ---
 
