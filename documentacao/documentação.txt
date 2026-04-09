@@ -1,0 +1,119 @@
+========================================
+DESCRIÇÃO DO SISTEMA
+========================================
+
+O Kurly é um sistema de agendamento desenvolvido para gerenciamento de horários de serviços, permitindo cadastrar, visualizar, editar e excluir agendamentos.
+
+O sistema realiza validações de regras de negócio, como verificação de conflitos de horários e restrição de edição com menos de 2 dias de antecedência.
+
+Para este projeto, o sistema foi adaptado para uso individual, sendo a Leila a responsável pelo gerenciamento dos agendamentos.
+
+========================================
+SISTEMA KURLY - CASOS DE USO
+========================================
+
+Observação:
+O sistema foi adaptado para uso individual (Leila), sendo ela a responsável pelo gerenciamento dos agendamentos.
+
+
+========================================
+CASO DE USO 1 - AGENDAR HORÁRIO
+========================================
+
+Ator Primário: Leila
+
+Descrição:
+Permite cadastrar um novo agendamento no sistema.
+
+Fluxo Principal:
+1. Leila acessa a tela de agendamento
+2. Informa nome do cliente
+3. Informa telefone
+4. Seleciona o serviço
+5. Informa data e hora
+6. O sistema valida os dados
+7. O sistema verifica conflitos de horário
+8. O sistema salva o agendamento
+9. O sistema exibe mensagem de sucesso
+
+
+
+Fluxos Alternativos:
+
+6A. Dados inválidos:
+- O sistema informa a falta de dados ou invalidade nas informações
+
+7A. Conflito de horário:
+- O sistema impede o agendamento
+- O sistema informa que já existe um horário ocupado
+
+
+========================================
+CASO DE USO 2 - LISTAR AGENDAMENTOS
+========================================
+
+Ator Primário: Leila
+
+Descrição:
+Permite visualizar todos os agendamentos cadastrados.
+
+Fluxo Principal:
+1. Leila acessa a página de agenda
+2. O sistema consulta o banco de dados
+3. O sistema exibe a lista de agendamentos
+
+
+========================================
+CASO DE USO 3 - EDITAR AGENDAMENTO
+========================================
+
+Ator Primário: Leila
+
+Descrição:
+Permite alterar um agendamento existente.
+
+Fluxo Principal:
+1. Leila acessa a lista de agendamentos
+2. Seleciona a opção de editar
+3. O sistema carrega os dados do agendamento
+4. Leila altera as informações desejadas
+5. O sistema valida os dados
+6. O sistema verifica conflitos de horário
+7. O sistema salva as alterações
+8. O sistema exibe mensagem de sucesso
+
+Fluxos Alternativos:
+
+5A. Dados inválidos:
+- O sistema solicita correção
+
+6A. Conflito de horário:
+- O sistema impede a alteração
+
+6B. Alteração com menos de 2 dias:
+- O sistema bloqueia a edição
+- O sistema informa que não é possível alterar o agendamento com menos de 2 dias de antecedência
+
+
+========================================
+CASO DE USO 4 - EXCLUIR AGENDAMENTO
+========================================
+
+Ator Primário: Leila
+
+Descrição:
+Permite remover um agendamento do sistema.
+
+Fluxo Principal:
+1. Leila acessa a lista de agendamentos
+2. Seleciona a opção de excluir
+3. O sistema solicita confirmação
+4. Leila confirma a exclusão
+5. O sistema remove o agendamento
+6. O sistema atualiza a lista
+
+Fluxos Alternativos:
+
+3A. Cancelamento:
+- Leila cancela a ação
+- O sistema mantém o agendamento
